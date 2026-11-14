@@ -1,0 +1,22 @@
+{
+  "mintsoft-app-series/tabflow-extension": {
+    "url": "https://github.com/mintsoft-app-series/tabflow-extension",
+    "description": "TabFlow - Smart Tab Manager Chrome Extension",
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 0,
+    "license": null,
+    "language": "TypeScript",
+    "languages": {
+      "TypeScript": 37638,
+      "CSS": 1659,
+      "JavaScript": 646,
+      "HTML": 270
+    },
+    "topics": [],
+    "pushedAt": "2026-02-27T02:21:17Z",
+    "defaultBranch": "main",
+    "latestRelease": null,
+    "syncedAt": "2026-11-14T07:47:11.399Z"
+  }
+}

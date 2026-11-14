@@ -1,0 +1,23 @@
+{
+  "name": "opensource-homepage",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "sync": "node scripts/sync-github.mjs",
+    "dev": "astro dev",
+    "build": "node scripts/sync-github.mjs && astro build",
+    "build:offline": "astro build",
+    "preview": "astro preview",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name mintsoft-oss",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^5.18.2",
+    "tailwindcss": "^4.3.5"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.7.5"
+  }
+}

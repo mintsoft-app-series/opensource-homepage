@@ -1,0 +1,23 @@
+---
+import site from "../data/site.json";
+import { t } from "../data/i18n";
+import { orgUrl } from "../lib/repo";
+import type { Locale } from "../data/projects";
+const { lang } = Astro.props as { lang: Locale };
+const d = t(lang);
+---
+<footer class="border-t border-line mt-24">
+  <div class="page-x py-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between text-sm">
+    <div class="flex items-center gap-2.5">
+      <img src="/logo.jpg" alt="" width="24" height="24" class="h-6 w-6 rounded" />
+      <span class="font-logo font-bold">MintSoft</span>
+      <span class="text-sub">— {d.footerTag}</span>
+    </div>
+    <div class="flex flex-wrap gap-x-5 gap-y-2 text-sub">
+      <a href={orgUrl} class="hover:text-ink">GitHub</a>
+      <a href={site.site.appsUrl} class="hover:text-ink">{d.navApps}</a>
+      <a href={`mailto:${site.site.contactEmail}`} class="hover:text-ink">{site.site.contactEmail}</a>
+      <span>© {new Date().getFullYear()} Mint-Soft</span>
+    </div>
+  </div>
+</footer>

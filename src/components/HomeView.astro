@@ -1,0 +1,136 @@
+---
+import Base from "../layouts/Base.astro";
+import Terminal from "./Terminal.astro";
+import ProjectCard from "./ProjectCard.astro";
+import CopyCommand from "./CopyCommand.astro";
+import site from "../data/site.json";
+import { t } from "../data/i18n";
+import { projects, type Locale } from "../data/projects";
+import { orgUrl, stats } from "../lib/repo";
+const { lang } = Astro.props as { lang: Locale };
+const d = t(lang);
+const s = stats();
+const sorted = [...projects].sort((a, b) => (a.status === b.status ? 0 : a.status === "released" ? -1 : 1));
+const cats = [...new Set(projects.map((p) => p.category))];
+const statItems = [
+  { v: s.released, l: d.statProjects },
+  { v: s.stars, l: d.statStars },
+  { v: s.languages, l: d.statLanguages },
+  { v: s.preparing, l: d.statPreparing },
+];
+---
+<Base lang={lang}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+      <div class="absolute -top-40 -left-24 h-[480px] w-[480px] rounded-full bg-mint/20 blur-3xl animate-aurora"></div>
+      <div class="absolute top-20 right-[-10%] h-[380px] w-[380px] rounded-full bg-[#3178c6]/10 blur-3xl animate-aurora-slow"></div>
+    </div>
+    <div class="page-x grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.05fr_1fr] lg:items-center [&>*]:min-w-0">
+      <div>
+        <p class="inline-flex items-center gap-2 rounded-full border border-line bg-page/70 px-3 py-1 font-mono text-xs text-sub">
+          <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse"></span>{d.heroEyebrow}
+        </p>
+        <h1 class="mt-6 text-[2.35rem] sm:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.12] tracking-[-0.035em]">
+          {d.heroTitleA}<br /><span class="text-mint">{d.heroTitleB}</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg text-sub leading-relaxed">{d.heroSub}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#projects" class="rounded-xl bg-btn text-btn-text px-5 py-3 text-sm font-semibold hover:opacity-90">{d.ctaProjects}</a>
+          <a href={orgUrl} class="rounded-xl border border-line-strong px-5 py-3 text-sm font-semibold hover:bg-soft">{d.ctaGithub} ↗</a>
+        </div>
+      </div>
+      <Terminal />
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="page-x">
+    <dl class="grid grid-cols-2 sm:grid-cols-4 rounded-2xl border border-line divide-x divide-y sm:divide-y-0 divide-line overflow-hidden">
+      {statItems.map((it) => (
+        <div class="p-5 sm:p-6">
+          <dt class="text-xs text-sub">{it.l}</dt>
+          <dd class="mt-1 text-3xl font-bold tabular-nums tracking-tight">{it.v}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="page-x scroll-mt-20 pt-24">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight">{d.projectsTitle}</h2>
+        <p class="mt-2 text-sub">{d.projectsSub}</p>
+      </div>
+      {cats.length > 1 && (
+        <div class="flex flex-wrap gap-2" role="group" id="filters">
+          <button type="button" data-f="all" aria-pressed="true" class="filter">{d.filterAll}</button>
+          {cats.map((c) => <button type="button" data-f={c} aria-pressed="false" class="filter">{d.cat[c]}</button>)}
+        </div>
+      )}
+    </div>
+    {s.released === 0 && (
+      <p class="mt-8 rounded-xl border border-mint/30 bg-mint/5 px-4 py-3 text-sm text-mint-ink">{d.emptyReleased}</p>
+    )}
+    <div id="grid" class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {sorted.map((p) => <ProjectCard p={p} lang={lang} />)}
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="page-x pt-24">
+    <h2 class="text-3xl font-bold tracking-tight">{d.principlesTitle}</h2>
+    <div class="mt-8 grid gap-5 md:grid-cols-3">
+      {d.principles.map((pr, i) => (
+        <div class="rounded-2xl bg-soft p-6">
+          <p class="font-mono text-xs text-mint-ink">0{i + 1}</p>
+          <h3 class="mt-3 text-lg font-bold">{pr.t}</h3>
+          <p class="mt-2 text-sub leading-relaxed">{pr.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Contribute -->
+  <section id="contribute" class="page-x scroll-mt-20 pt-24">
+    <div class="grid gap-10 rounded-3xl border border-line p-6 sm:p-10 lg:grid-cols-2 lg:items-center [&>*]:min-w-0">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight">{d.contributeTitle}</h2>
+        <p class="mt-3 text-sub leading-relaxed">{d.contributeSub}</p>
+        <ol class="mt-6 space-y-3">
+          {d.steps.map((st, i) => (
+            <li class="flex items-center gap-3">
+              <span class="grid h-7 w-7 place-items-center rounded-full bg-mint/10 font-mono text-xs font-semibold text-mint-ink">{i + 1}</span>
+              <span>{st}</span>
+            </li>
+          ))}
+        </ol>
+        <p class="mt-6 text-sm text-sub">{d.contactLine} <a class="text-mint-ink underline underline-offset-4" href={`mailto:${site.site.contactEmail}`}>{site.site.contactEmail}</a></p>
+      </div>
+      <CopyCommand copy={d.copy} copied={d.copied} lines={[
+        "gh repo fork mintsoft-app-series/<repo> --clone",
+        "git switch -c fix/short-description",
+        "git commit -m \"fix: 무엇을 고쳤는지\"",
+        "gh pr create --fill",
+      ]} />
+    </div>
+  </section>
+</Base>
+
+<style is:global>
+  .filter { border-radius: 9999px; border: 1px solid var(--line-strong); padding: 0.375rem 0.875rem; font-size: 0.8125rem; color: var(--sub); }
+  .filter:hover { color: var(--ink); }
+  .filter[aria-pressed="true"] { background: var(--btn); color: var(--btn-text); border-color: var(--btn); }
+</style>
+<script>
+  const bar = document.getElementById("filters");
+  bar?.addEventListener("click", (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-f]");
+    if (!b) return;
+    bar.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    document.querySelectorAll<HTMLElement>("#grid [data-cat]").forEach((c) => {
+      c.hidden = b.dataset.f !== "all" && c.dataset.cat !== b.dataset.f;
+    });
+  });
+</script>

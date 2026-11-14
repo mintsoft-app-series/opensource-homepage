@@ -1,0 +1,11 @@
+---
+interface Props { lines: string[]; copy: string; copied: string }
+const { lines, copy, copied } = Astro.props;
+---
+<div class="relative rounded-xl bg-term text-term-ink font-mono text-[13px] leading-relaxed border border-white/5">
+  <pre class="overflow-x-auto p-4 pr-20"><code>{lines.map((l) => <div><span class="text-[#3ddc97] select-none">$ </span>{l}</div>)}</code></pre>
+  <button type="button" data-copy={lines.join("\n")} data-copied={copied}
+    class="absolute top-2.5 right-2.5 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-term-ink hover:bg-white/10">
+    <span data-label>{copy}</span>
+  </button>
+</div>

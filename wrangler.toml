@@ -1,0 +1,4 @@
+# Cloudflare Pages (정적) — `npm run deploy` 가 dist/ 를 올린다.
+name = "mintsoft-oss"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-01"

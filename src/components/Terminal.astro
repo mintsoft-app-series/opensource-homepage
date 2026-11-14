@@ -1,0 +1,65 @@
+---
+// 히어로 터미널 — 공개 저장소를 하나씩 clone 하는 장면을 타이핑한다.
+import { projects } from "../data/projects";
+import { repoMeta } from "../lib/repo";
+const scenes = projects
+  .filter((p) => repoMeta(p))
+  .map((p) => {
+    const dir = p.repo.split("/")[1];
+    const m = repoMeta(p)!;
+    return [
+      { k: "cmd", s: `git clone https://github.com/${p.repo}` },
+      { k: "out", s: `Cloning into '${dir}'... done.` },
+      { k: "cmd", s: `cd ${dir}` },
+      // 지어낸 파일 목록 대신 GitHub 에서 받은 실제 메타데이터만 보여준다.
+      { k: "out", s: `# ${[m.language, m.license ?? "license TBD", `★ ${m.stars}`].filter(Boolean).join(" · ")}` },
+    ];
+  });
+const fallback = [[{ k: "cmd", s: "gh repo list mintsoft-app-series" }, { k: "out", s: "first release coming soon…" }]];
+const data = JSON.stringify(scenes.length ? scenes : fallback);
+---
+<div class="relative rounded-2xl bg-term text-term-ink shadow-2xl shadow-black/20 border border-white/5 overflow-hidden">
+  <div class="flex items-center gap-1.5 px-4 h-10 border-b border-white/5">
+    <span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span>
+    <span class="h-3 w-3 rounded-full bg-[#febc2e]"></span>
+    <span class="h-3 w-3 rounded-full bg-[#28c840]"></span>
+    <span class="ml-3 font-mono text-[11px] text-white/40">~/mintsoft — zsh</span>
+  </div>
+  <div id="term" data-scenes={data} class="font-mono text-[12.5px] sm:text-[13px] leading-7 p-5 h-[188px] overflow-hidden" aria-hidden="true"></div>
+</div>
+<script>
+  const el = document.getElementById("term");
+  if (el) {
+    const scenes: { k: string; s: string }[][] = JSON.parse(el.dataset.scenes ?? "[]");
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    const line = (k: string) => {
+      const d = document.createElement("div");
+      d.className = "whitespace-nowrap overflow-hidden text-ellipsis " + (k === "out" ? "text-white/55" : "");
+      if (k === "cmd") d.innerHTML = '<span style="color:#3ddc97">❯</span> ';
+      el.appendChild(d);
+      return d;
+    };
+    const caret = () => { const c = document.createElement("span"); c.className = "inline-block w-2 h-4 align-middle bg-[#3ddc97] animate-blink"; return c; };
+    const render = (scene: { k: string; s: string }[]) => {
+      el.textContent = "";
+      scene.forEach(({ k, s }) => line(k).append(s));
+      line("cmd").append(caret());
+    };
+    (async () => {
+      if (reduce) return render(scenes[0]);
+      for (let i = 0; ; i = (i + 1) % scenes.length) {
+        el.textContent = "";
+        for (const { k, s } of scenes[i]) {
+          const d = line(k);
+          if (k === "out") { await sleep(350); d.append(s); continue; }
+          const c = caret(); d.append(c);
+          for (const ch of s) { c.before(ch); await sleep(28 + Math.random() * 40); }
+          c.remove(); await sleep(250);
+        }
+        line("cmd").append(caret());
+        await sleep(3200);
+      }
+    })();
+  }
+</script>
