@@ -9,7 +9,7 @@
     "build": "node scripts/sync-github.mjs && astro build",
     "build:offline": "astro build",
     "preview": "astro preview",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name mintsoft-oss",
+    "deploy": "npm run build && wrangler deploy",
     "astro": "astro"
   },
   "dependencies": {
