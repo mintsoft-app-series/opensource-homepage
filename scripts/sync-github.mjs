@@ -20,12 +20,13 @@ async function gh(path) {
 let cache = {};
 try { cache = JSON.parse(await readFile(outFile, "utf8")); } catch {}
 
-const next = { ...cache };
+// 목록에 있는 저장소만 남긴다 — 빠진 저장소의 옛 캐시는 버린다.
+const next = {};
 let failed = 0;
 for (const repo of repos) {
   try {
     const r = await gh(`/repos/${repo}`);
-    if (!r) { console.warn(`[sync] ${repo}: 공개 저장소가 아님(404) — 건너뜀`); delete next[repo]; continue; }
+    if (!r) { console.warn(`[sync] ${repo}: 공개 저장소가 아님(404) — 건너뜀`); continue; }
     const [languages, release] = await Promise.all([
       gh(`/repos/${repo}/languages`),
       gh(`/repos/${repo}/releases/latest`),
@@ -48,6 +49,7 @@ for (const repo of repos) {
     console.log(`[sync] ${repo}: ★${r.stargazers_count} ${next[repo].license ?? "라이선스 없음"}`);
   } catch (e) {
     failed++;
+    if (cache[repo]) next[repo] = cache[repo];
     console.warn(`[sync] ${repo}: 조회 실패, 캐시 유지 — ${e.message}`);
   }
 }

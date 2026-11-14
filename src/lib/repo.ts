@@ -46,7 +46,7 @@ export function stats() {
   const langs = new Set(metas.flatMap((m) => Object.keys(m.languages)));
   return {
     released: live.length,
-    preparing: projects.length - live.length,
+    forks: metas.reduce((s, m) => s + m.forks, 0),
     stars: metas.reduce((s, m) => s + m.stars, 0),
     languages: langs.size,
   };

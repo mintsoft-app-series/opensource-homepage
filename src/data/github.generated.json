@@ -1,22 +1,79 @@
 {
-  "mintsoft-app-series/tabflow-extension": {
-    "url": "https://github.com/mintsoft-app-series/tabflow-extension",
-    "description": "TabFlow - Smart Tab Manager Chrome Extension",
+  "mintsoft-opensource/notikit": {
+    "url": "https://github.com/mintsoft-opensource/notikit",
+    "description": "Self-hostable push notification toolkit",
     "stars": 0,
     "forks": 0,
     "openIssues": 0,
-    "license": null,
+    "license": "Apache-2.0",
     "language": "TypeScript",
     "languages": {
-      "TypeScript": 37638,
-      "CSS": 1659,
-      "JavaScript": 646,
-      "HTML": 270
+      "TypeScript": 2081860,
+      "JavaScript": 158081,
+      "HTML": 48725,
+      "CSS": 22853,
+      "PLpgSQL": 9536,
+      "Dockerfile": 4571
+    },
+    "topics": [
+      "docker",
+      "fcm",
+      "nextjs",
+      "notifications",
+      "push-notifications",
+      "self-hosted"
+    ],
+    "pushedAt": "2026-10-12T02:19:32Z",
+    "defaultBranch": "master",
+    "latestRelease": null,
+    "syncedAt": "2026-11-14T09:02:59.237Z"
+  },
+  "mintsoft-opensource/btop-gui": {
+    "url": "https://github.com/mintsoft-opensource/btop-gui",
+    "description": "btop-inspired cross-platform GUI system monitor (Tauri + Next.js) with remote WebSocket agents",
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 0,
+    "license": "Apache-2.0",
+    "language": "TypeScript",
+    "languages": {
+      "TypeScript": 44004,
+      "Rust": 28399,
+      "CSS": 13158
     },
     "topics": [],
-    "pushedAt": "2026-02-27T02:21:17Z",
+    "pushedAt": "2026-11-14T07:28:14Z",
     "defaultBranch": "main",
     "latestRelease": null,
-    "syncedAt": "2026-11-14T07:47:11.399Z"
+    "syncedAt": "2026-11-14T09:02:59.814Z"
+  },
+  "mintsoft-opensource/pane-sticker": {
+    "url": "https://github.com/mintsoft-opensource/pane-sticker",
+    "description": "Translucent always-on-top overlay that labels every Windows Terminal pane with its real working directory",
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 0,
+    "license": "MIT",
+    "language": "C#",
+    "languages": {
+      "C#": 100545
+    },
+    "topics": [
+      "csharp",
+      "dotnet",
+      "overlay",
+      "productivity",
+      "windows",
+      "windows-terminal",
+      "wpf"
+    ],
+    "pushedAt": "2026-11-14T07:57:04Z",
+    "defaultBranch": "main",
+    "latestRelease": {
+      "tag": "v1.0.10",
+      "url": "https://github.com/mintsoft-opensource/pane-sticker/releases/tag/v1.0.10",
+      "publishedAt": "2026-11-14T07:27:02Z"
+    },
+    "syncedAt": "2026-11-14T09:03:00.355Z"
   }
 }

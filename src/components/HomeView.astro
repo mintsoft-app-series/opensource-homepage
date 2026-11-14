@@ -16,7 +16,7 @@ const statItems = [
   { v: s.released, l: d.statProjects },
   { v: s.stars, l: d.statStars },
   { v: s.languages, l: d.statLanguages },
-  { v: s.preparing, l: d.statPreparing },
+  { v: s.forks, l: d.statForks },
 ];
 ---
 <Base lang={lang}>
@@ -109,7 +109,7 @@ const statItems = [
         <p class="mt-6 text-sm text-sub">{d.contactLine} <a class="text-mint-ink underline underline-offset-4" href={`mailto:${site.site.contactEmail}`}>{site.site.contactEmail}</a></p>
       </div>
       <CopyCommand copy={d.copy} copied={d.copied} lines={[
-        "gh repo fork mintsoft-app-series/<repo> --clone",
+        "gh repo fork mintsoft-opensource/<repo> --clone",
         "git switch -c fix/short-description",
         "git commit -m \"fix: 무엇을 고쳤는지\"",
         "gh pr create --fill",

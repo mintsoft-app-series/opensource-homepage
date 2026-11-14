@@ -1,7 +1,0 @@
----
-import DetailView from "../../../components/DetailView.astro";
-import { released, type Project } from "../../../data/projects";
-export const getStaticPaths = () => released().map((p) => ({ params: { slug: p.slug }, props: { p } }));
-const { p } = Astro.props as { p: Project };
----
-<DetailView p={p} lang="en" />
