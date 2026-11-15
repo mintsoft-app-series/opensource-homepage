@@ -60,6 +60,22 @@ export const projects: Project[] = [
     tags: ["tauri", "rust", "system-monitor"],
   },
   {
+    slug: "pm2-gui",
+    repo: "mintsoft-opensource/pm2-gui",
+    name: "pm2-gui",
+    status: "released",
+    category: "desktop",
+    tagline: {
+      ko: "PM2 프로세스 관리를 한 창에서 — 실시간 로그를 갖춘 크로스플랫폼 데스크톱 GUI",
+      en: "A cross-platform desktop GUI for the PM2 process manager with live logs",
+    },
+    highlights: {
+      ko: ["프로세스 표·재시작/중지·상세 지표를 한눈에", "stdout/stderr 실시간 로그와 검색·병합 보기", "macOS · Windows · Linux"],
+      en: ["Process table, restart/stop and runtime metrics at a glance", "Live stdout/stderr tail with search and merged view", "macOS · Windows · Linux"],
+    },
+    tags: ["tauri", "nextjs", "pm2"],
+  },
+  {
     slug: "pane-sticker",
     repo: "mintsoft-opensource/pane-sticker",
     name: "PaneSticker",

@@ -26,7 +26,7 @@
     "pushedAt": "2026-10-12T02:19:32Z",
     "defaultBranch": "master",
     "latestRelease": null,
-    "syncedAt": "2026-11-14T09:02:59.237Z"
+    "syncedAt": "2026-11-15T06:47:19.524Z"
   },
   "mintsoft-opensource/btop-gui": {
     "url": "https://github.com/mintsoft-opensource/btop-gui",
@@ -37,15 +37,44 @@
     "license": "Apache-2.0",
     "language": "TypeScript",
     "languages": {
-      "TypeScript": 44004,
-      "Rust": 28399,
-      "CSS": 13158
+      "TypeScript": 99013,
+      "Rust": 25495,
+      "CSS": 4869,
+      "JavaScript": 70
     },
     "topics": [],
-    "pushedAt": "2026-11-14T07:28:14Z",
+    "pushedAt": "2026-11-14T09:55:14Z",
     "defaultBranch": "main",
-    "latestRelease": null,
-    "syncedAt": "2026-11-14T09:02:59.814Z"
+    "latestRelease": {
+      "tag": "v0.0.1",
+      "url": "https://github.com/mintsoft-opensource/btop-gui/releases/tag/v0.0.1",
+      "publishedAt": "2026-11-14T10:02:49Z"
+    },
+    "syncedAt": "2026-11-15T06:47:20.088Z"
+  },
+  "mintsoft-opensource/pm2-gui": {
+    "url": "https://github.com/mintsoft-opensource/pm2-gui",
+    "description": "Cross-platform desktop GUI for the PM2 process manager with live logs (Tauri + Next.js)",
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 0,
+    "license": "Apache-2.0",
+    "language": "TypeScript",
+    "languages": {
+      "TypeScript": 79718,
+      "Rust": 34148,
+      "CSS": 4869,
+      "JavaScript": 70
+    },
+    "topics": [],
+    "pushedAt": "2026-11-15T04:52:05Z",
+    "defaultBranch": "main",
+    "latestRelease": {
+      "tag": "v0.0.1",
+      "url": "https://github.com/mintsoft-opensource/pm2-gui/releases/tag/v0.0.1",
+      "publishedAt": "2026-11-15T04:58:27Z"
+    },
+    "syncedAt": "2026-11-15T06:47:20.628Z"
   },
   "mintsoft-opensource/pane-sticker": {
     "url": "https://github.com/mintsoft-opensource/pane-sticker",
@@ -56,7 +85,7 @@
     "license": "MIT",
     "language": "C#",
     "languages": {
-      "C#": 100545
+      "C#": 108307
     },
     "topics": [
       "csharp",
@@ -67,13 +96,13 @@
       "windows-terminal",
       "wpf"
     ],
-    "pushedAt": "2026-11-14T07:57:04Z",
+    "pushedAt": "2026-11-15T02:58:08Z",
     "defaultBranch": "main",
     "latestRelease": {
-      "tag": "v1.0.10",
-      "url": "https://github.com/mintsoft-opensource/pane-sticker/releases/tag/v1.0.10",
-      "publishedAt": "2026-11-14T07:27:02Z"
+      "tag": "v1.0.12",
+      "url": "https://github.com/mintsoft-opensource/pane-sticker/releases/tag/v1.0.12",
+      "publishedAt": "2026-11-15T02:59:26Z"
     },
-    "syncedAt": "2026-11-14T09:03:00.355Z"
+    "syncedAt": "2026-11-15T06:47:21.173Z"
   }
 }
