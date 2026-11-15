@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import site from "../data/site.json";
-import { t, prefix, otherLocale } from "../data/i18n";
+import { t, prefix, dirOf, locales, LOCALES } from "../data/i18n";
 import type { Locale } from "../data/projects";
 
 interface Props { lang: Locale; title?: string; description?: string; path?: string }
@@ -12,20 +12,18 @@ const d = t(lang);
 const fullTitle = title ? `${title} · ${site.site.name}` : d.metaTitle;
 const desc = description ?? d.metaDesc;
 const canonical = new URL(prefix(lang) + path, site.site.url).href;
-const alt = otherLocale(lang);
-const altHref = new URL(prefix(alt) + path, site.site.url).href;
+const alternates = locales.map((l) => ({ l, href: new URL(prefix(l) + path, site.site.url).href }));
 const koHref = new URL(path, site.site.url).href;
 ---
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} dir={dirOf(lang)}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={desc} />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang={lang} href={canonical} />
-    <link rel="alternate" hreflang={alt} href={altHref} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.l} href={a.href} />)}
     <link rel="alternate" hreflang="x-default" href={koHref} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#0f9f6e" />
@@ -33,6 +31,7 @@ const koHref = new URL(path, site.site.url).href;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={LOCALES[lang].bcp47.replace("-", "_")} />
     <meta property="og:image" content={new URL("/og.png", site.site.url).href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -50,7 +49,7 @@ const koHref = new URL(path, site.site.url).href;
     </script>
   </head>
   <body class="min-h-dvh flex flex-col">
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 bg-btn text-btn-text px-3 py-2 rounded-md">Skip</a>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-50 bg-btn text-btn-text px-3 py-2 rounded-md">Skip</a>
     <Header lang={lang} path={path} />
     <main id="main" class="flex-1"><slot /></main>
     <Footer lang={lang} />

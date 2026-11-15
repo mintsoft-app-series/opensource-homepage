@@ -73,7 +73,7 @@ const statItems = [
     {s.released === 0 && (
       <p class="mt-8 rounded-xl border border-mint/30 bg-mint/5 px-4 py-3 text-sm text-mint-ink">{d.emptyReleased}</p>
     )}
-    <div id="grid" class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div id="grid" class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 [&>*]:min-w-0">
       {sorted.map((p) => <ProjectCard p={p} lang={lang} />)}
     </div>
   </section>
@@ -111,7 +111,7 @@ const statItems = [
       <CopyCommand copy={d.copy} copied={d.copied} lines={[
         "gh repo fork mintsoft-opensource/<repo> --clone",
         "git switch -c fix/short-description",
-        "git commit -m \"fix: 무엇을 고쳤는지\"",
+        `git commit -m "fix: ${d.commitExample}"`,
         "gh pr create --fill",
       ]} />
     </div>

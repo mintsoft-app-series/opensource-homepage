@@ -26,7 +26,7 @@
     "pushedAt": "2026-10-12T02:19:32Z",
     "defaultBranch": "master",
     "latestRelease": null,
-    "syncedAt": "2026-11-15T06:47:19.524Z"
+    "syncedAt": "2026-11-15T12:59:39.627Z"
   },
   "mintsoft-opensource/btop-gui": {
     "url": "https://github.com/mintsoft-opensource/btop-gui",
@@ -50,7 +50,7 @@
       "url": "https://github.com/mintsoft-opensource/btop-gui/releases/tag/v0.0.1",
       "publishedAt": "2026-11-14T10:02:49Z"
     },
-    "syncedAt": "2026-11-15T06:47:20.088Z"
+    "syncedAt": "2026-11-15T12:59:40.192Z"
   },
   "mintsoft-opensource/pm2-gui": {
     "url": "https://github.com/mintsoft-opensource/pm2-gui",
@@ -74,7 +74,7 @@
       "url": "https://github.com/mintsoft-opensource/pm2-gui/releases/tag/v0.0.1",
       "publishedAt": "2026-11-15T04:58:27Z"
     },
-    "syncedAt": "2026-11-15T06:47:20.628Z"
+    "syncedAt": "2026-11-15T12:59:40.805Z"
   },
   "mintsoft-opensource/pane-sticker": {
     "url": "https://github.com/mintsoft-opensource/pane-sticker",
@@ -96,13 +96,13 @@
       "windows-terminal",
       "wpf"
     ],
-    "pushedAt": "2026-11-15T02:58:08Z",
+    "pushedAt": "2026-11-15T12:33:56Z",
     "defaultBranch": "main",
     "latestRelease": {
-      "tag": "v1.0.12",
-      "url": "https://github.com/mintsoft-opensource/pane-sticker/releases/tag/v1.0.12",
-      "publishedAt": "2026-11-15T02:59:26Z"
+      "tag": "v1.0.13",
+      "url": "https://github.com/mintsoft-opensource/pane-sticker/releases/tag/v1.0.13",
+      "publishedAt": "2026-11-15T12:35:09Z"
     },
-    "syncedAt": "2026-11-15T06:47:21.173Z"
+    "syncedAt": "2026-11-15T12:59:41.427Z"
   }
 }

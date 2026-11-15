@@ -7,6 +7,7 @@ interface Props { p: Project; lang: Locale }
 const { p, lang } = Astro.props;
 const d = t(lang);
 const m = repoMeta(p);
+const copy = d.projects[p.slug];
 const live = p.status === "released";
 // 전용 사이트가 있으면 그쪽, 없으면 GitHub 저장소로 바로 간다.
 const href = p.homepage ?? repoUrl(p);
@@ -19,7 +20,7 @@ const Tag = live ? "a" : "div";
          : "border-dashed border-line-strong bg-soft/50"]}>
   <div class="flex items-start justify-between gap-3">
     <div class="min-w-0">
-      <p class="font-mono text-[11px] text-sub truncate">{p.repo}</p>
+      <p class="font-mono text-[11px] text-sub truncate" dir="ltr">{p.repo}</p>
       <h3 class="mt-1 text-xl font-bold tracking-tight">{p.name}</h3>
     </div>
     <span class:list={["shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-semibold",
@@ -27,10 +28,10 @@ const Tag = live ? "a" : "div";
       {live ? d.cat[p.category] : d.preparing}
     </span>
   </div>
-  <p class="mt-3 text-[15px] leading-relaxed">{p.tagline[lang]}</p>
-  {p.highlights?.[lang] && (
+  <p class="mt-3 text-[15px] leading-relaxed">{copy.tagline}</p>
+  {copy.highlights.length > 0 && (
     <ul class="mt-4 space-y-1.5 text-sm text-sub">
-      {p.highlights[lang].map((h) => <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-mint"></span><span>{h}</span></li>)}
+      {copy.highlights.map((h) => <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-mint"></span><span>{h}</span></li>)}
     </ul>
   )}
   {!live && <p class="mt-2 text-xs text-sub/80">{d.preparingNote}</p>}
@@ -48,8 +49,8 @@ const Tag = live ? "a" : "div";
     </div>
     {live && (
       <p class="mt-4 pt-4 border-t border-line flex items-center justify-between gap-3 text-sm font-semibold">
-        <span class="font-mono text-xs font-normal text-sub truncate">{dest}</span>
-        <span class="shrink-0 whitespace-nowrap text-mint-ink transition group-hover:translate-x-0.5">{p.homepage ? d.visitSite : d.viewOnGithub} ↗</span>
+        <span class="min-w-0 font-mono text-xs font-normal text-sub truncate" dir="ltr">{dest}</span>
+        <span class="shrink-0 whitespace-nowrap text-mint-ink transition group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5">{p.homepage ? d.visitSite : d.viewOnGithub} ↗</span>
       </p>
     )}
   </div>

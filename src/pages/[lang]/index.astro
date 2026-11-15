@@ -1,0 +1,9 @@
+---
+import HomeView from "../../components/HomeView.astro";
+import { locales, defaultLocale } from "../../data/i18n";
+import type { Locale } from "../../data/locales";
+// ko 는 루트(/)에서 빌드하고, 나머지 24개 언어는 /<code>/ 로 만든다.
+export const getStaticPaths = () => locales.filter((l) => l !== defaultLocale).map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Locale;
+---
+<HomeView lang={lang} />
